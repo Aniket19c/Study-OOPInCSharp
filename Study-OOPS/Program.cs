@@ -1,39 +1,27 @@
 ﻿using System;
 
-interface IVehicle
+class Person
 {
-    void Start();
-}
-
-abstract class Vehicle
-{
-    public string Model { get; set; }
-    public Vehicle(string model)
+    private string name;
+    private int age;
+    public string Name
     {
-        Model = model;
+        get { return name; }
+        set { if (!string.IsNullOrWhiteSpace(value)) name = value; }
     }
-    public abstract void Drive();
-}
-
-class Car : Vehicle, IVehicle
-{
-    public Car(string model) : base(model) { }
-    public override void Drive()
+    public int Age
     {
-        Console.WriteLine("Car is driving");
+        get { return age; }
+        set { if (value > 0) age = value; }
     }
-    public void Start()
+    public Person(string name, int age)
     {
-        Console.WriteLine("Car has started");
+        Name = name;
+        Age = age;
     }
-}
-
-class Bike : Vehicle
-{
-    public Bike(string model) : base(model) { }
-    public override void Drive()
+    public void Introduce()
     {
-        Console.WriteLine("Bike is driving");
+        Console.WriteLine($"Hi, I'm {Name} and I'm {Age} years old.");
     }
 }
 
@@ -41,11 +29,10 @@ class Program
 {
     static void Main()
     {
-        IVehicle car = new Car("Sedan");
-        car.Start();
-        Vehicle myCar = new Car("Sedan");
-        myCar.Drive();
-        Vehicle myBike = new Bike("Sport");
-        myBike.Drive();
+        Person person = new Person("Alice", 25);
+        person.Introduce();
+        person.Name = "Bob";
+        person.Age = 30;
+        person.Introduce();
     }
 }
