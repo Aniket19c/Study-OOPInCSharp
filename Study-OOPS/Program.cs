@@ -1,50 +1,24 @@
 ﻿using System;
 
-interface IWorker
+class Animal
 {
-    void Work();
-}
-
-interface IStudent
-{
-    void Study();
-}
-
-class Person
-{
-    private string name;
-    private int age;
-    public string Name
-    {
-        get { return name; }
-        set { if (!string.IsNullOrWhiteSpace(value)) name = value; }
-    }
-    public int Age
-    {
-        get { return age; }
-        set { if (value > 0) age = value; }
-    }
-    public Person(string name, int age)
+    public string Name { get; set; }
+    public Animal(string name)
     {
         Name = name;
-        Age = age;
     }
-    public void Introduce()
+    public void Speak()
     {
-        Console.WriteLine($"Hi, I'm {Name} and I'm {Age} years old.");
+        Console.WriteLine("Animal makes a sound");
     }
 }
 
-class WorkingStudent : Person, IWorker, IStudent
+class Dog : Animal
 {
-    public WorkingStudent(string name, int age) : base(name, age) { }
-    public void Work()
+    public Dog(string name) : base(name) { }
+    public void Bark()
     {
-        Console.WriteLine($"{Name} is working.");
-    }
-    public void Study()
-    {
-        Console.WriteLine($"{Name} is studying.");
+        Console.WriteLine($"{Name} barks");
     }
 }
 
@@ -52,9 +26,8 @@ class Program
 {
     static void Main()
     {
-        WorkingStudent student = new WorkingStudent("Alice", 25);
-        student.Introduce();
-        student.Work();
-        student.Study();
+        Dog dog = new Dog("Buddy");
+        dog.Speak();
+        dog.Bark();
     }
 }
