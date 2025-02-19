@@ -1,5 +1,15 @@
 ﻿using System;
 
+interface IWorker
+{
+    void Work();
+}
+
+interface IStudent
+{
+    void Study();
+}
+
 class Person
 {
     private string name;
@@ -25,14 +35,26 @@ class Person
     }
 }
 
+class WorkingStudent : Person, IWorker, IStudent
+{
+    public WorkingStudent(string name, int age) : base(name, age) { }
+    public void Work()
+    {
+        Console.WriteLine($"{Name} is working.");
+    }
+    public void Study()
+    {
+        Console.WriteLine($"{Name} is studying.");
+    }
+}
+
 class Program
 {
     static void Main()
     {
-        Person person = new Person("Alice", 25);
-        person.Introduce();
-        person.Name = "Bob";
-        person.Age = 30;
-        person.Introduce();
+        WorkingStudent student = new WorkingStudent("Alice", 25);
+        student.Introduce();
+        student.Work();
+        student.Study();
     }
 }
