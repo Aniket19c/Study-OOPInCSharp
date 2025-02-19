@@ -1,39 +1,21 @@
 ﻿using System;
 
-interface IVehicle
+abstract class Animal
 {
-    void Start();
+    public string Name { get; set; }
+    public Animal(string name)
+    {
+        Name = name;
+    }
+    public abstract void MakeSound();
 }
 
-abstract class Vehicle
+class Dog : Animal
 {
-    public string Model { get; set; }
-    public Vehicle(string model)
+    public Dog(string name) : base(name) { }
+    public override void MakeSound()
     {
-        Model = model;
-    }
-    public abstract void Drive();
-}
-
-class Car : Vehicle, IVehicle
-{
-    public Car(string model) : base(model) { }
-    public override void Drive()
-    {
-        Console.WriteLine("Car is driving");
-    }
-    public void Start()
-    {
-        Console.WriteLine("Car has started");
-    }
-}
-
-class Bike : Vehicle
-{
-    public Bike(string model) : base(model) { }
-    public override void Drive()
-    {
-        Console.WriteLine("Bike is driving");
+        Console.WriteLine($"{Name} barks");
     }
 }
 
@@ -41,11 +23,7 @@ class Program
 {
     static void Main()
     {
-        IVehicle car = new Car("Sedan");
-        car.Start();
-        Vehicle myCar = new Car("Sedan");
-        myCar.Drive();
-        Vehicle myBike = new Bike("Sport");
-        myBike.Drive();
+        Animal dog = new Dog("Buddy");
+        dog.MakeSound();
     }
 }
