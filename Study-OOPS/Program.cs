@@ -5,6 +5,7 @@ class Program
 {
     static void Main()
     {
+    
         List<Student> students = new List<Student>();
 
         while (true)
