@@ -7,7 +7,7 @@ class Person
     public string Name
     {
         get { return name; }
-        set { if (!string.IsNullOrWhiteSpace(value)) name = value; }
+        set { name = value; }
     }
     public int Age
     {
